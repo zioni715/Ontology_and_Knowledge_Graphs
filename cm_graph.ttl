@@ -1,0 +1,32 @@
+@prefix cm: <http://example.org/cm#> .
+
+cm:ConcretePouring cm:canBeHandledBy cm:AdditionalInspection,
+        cm:RescheduleWork ;
+    cm:mayCause cm:QualityIssue,
+        cm:WeatherImpact .
+
+cm:CurtainWallInstallation cm:canBeHandledBy cm:ExpediteDelivery,
+        cm:IncreaseLabor,
+        cm:InstallSafetyNet,
+        cm:RescheduleWork ;
+    cm:mayCause cm:Delay,
+        cm:MaterialShortage,
+        cm:SafetyRisk .
+
+cm:Excavation cm:canBeHandledBy cm:IncreaseLabor,
+        cm:InstallSafetyNet,
+        cm:RescheduleWork ;
+    cm:mayCause cm:Delay,
+        cm:SafetyRisk .
+
+cm:MaterialShortage cm:solvedBy cm:ExpediteDelivery .
+
+cm:QualityIssue cm:solvedBy cm:AdditionalInspection .
+
+cm:WeatherImpact cm:solvedBy cm:RescheduleWork .
+
+cm:Delay cm:solvedBy cm:IncreaseLabor,
+        cm:RescheduleWork .
+
+cm:SafetyRisk cm:solvedBy cm:InstallSafetyNet .
+

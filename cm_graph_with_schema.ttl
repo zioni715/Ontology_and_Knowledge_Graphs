@@ -1,0 +1,71 @@
+@prefix cm: <http://example.org/cm#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+cm:Action a rdfs:Class .
+
+cm:Activity a rdfs:Class .
+
+cm:Issue a rdfs:Class .
+
+cm:ConcretePouring a cm:Activity ;
+    cm:canBeHandledBy cm:AdditionalInspection,
+        cm:RescheduleWork ;
+    cm:mayCause cm:QualityIssue,
+        cm:WeatherImpact .
+
+cm:CurtainWallInstallation a cm:Activity ;
+    cm:canBeHandledBy cm:ExpediteDelivery,
+        cm:IncreaseLabor,
+        cm:InstallSafetyNet,
+        cm:RescheduleWork ;
+    cm:mayCause cm:Delay,
+        cm:MaterialShortage,
+        cm:SafetyRisk .
+
+cm:Excavation a cm:Activity ;
+    cm:canBeHandledBy cm:IncreaseLabor,
+        cm:InstallSafetyNet,
+        cm:RescheduleWork ;
+    cm:mayCause cm:Delay,
+        cm:SafetyRisk .
+
+cm:canBeHandledBy a rdf:Property ;
+    rdfs:domain cm:Activity ;
+    rdfs:range cm:Action .
+
+cm:mayCause a rdf:Property ;
+    rdfs:domain cm:Activity .
+
+cm:mayCuase rdfs:range cm:Issue .
+
+cm:solvedBy a rdf:Property ;
+    rdfs:domain cm:Issue ;
+    rdfs:range cm:Action .
+
+cm:MaterialShortage a cm:Issue ;
+    cm:solvedBy cm:ExpediteDelivery .
+
+cm:QualityIssue a cm:Issue ;
+    cm:solvedBy cm:AdditionalInspection .
+
+cm:WeatherImpact a cm:Issue ;
+    cm:solvedBy cm:RescheduleWork .
+
+cm:AdditionalInspection a cm:Action .
+
+cm:Delay a cm:Issue ;
+    cm:solvedBy cm:IncreaseLabor,
+        cm:RescheduleWork .
+
+cm:ExpediteDelivery a cm:Action .
+
+cm:SafetyRisk a cm:Issue ;
+    cm:solvedBy cm:InstallSafetyNet .
+
+cm:IncreaseLabor a cm:Action .
+
+cm:InstallSafetyNet a cm:Action .
+
+cm:RescheduleWork a cm:Action .
+
